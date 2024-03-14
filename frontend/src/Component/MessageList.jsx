@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import MessageText from "./MessageText";
+import UseGetMessage from "./hooks/UseGetMessage";
+import MessageSkeleton from "../Utils/MessageSkeleton";
 
 const MessageList = () => {
+  const { loading, messages } = UseGetMessage();
+
+  const lastMessageRef = useRef();
+
+  useEffect(() => {
+    setTimeout(() => {
+      lastMessageRef?.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  }, [messages]);
   return (
     <div className="px-4 flex-1 overflow-auto h-full">
-      <MessageText />
-      <MessageText />
-      <MessageText />
-      <MessageText />
- 
+      {loading ? (
+        [...Array(3)].map((_, ids) => <MessageSkeleton key={ids} />)
+      ) : !loading && messages?.length == 0 ? (
+        <p className="text-center"> Send a message to start the chat</p>
+      ) : (
+        messages?.length > 0 &&
+        messages.map((data, id) => {
 
+          console.log('data', data)
+          return (
+            <div key={data._id} ref={lastMessageRef}>
+              <MessageText message={data} />
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };
 
 export default MessageList;
+{
+  /* <MessageText />
+          <MessageText />
+          <MessageText />
+          <MessageText /> */
+}

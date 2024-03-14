@@ -26,7 +26,7 @@ export const sendMessage = async (req, res) => {
 
     await Promise.all([findChat.save(), newMessage.save()]); // save message and chat using promise
 
-    res.status(200).json({ message: "Message sent successfully", newMessage });
+    res.status(200).json(newMessage);
   } catch (error) {
     console.log("error", error.message);
     res.status(500).json({ message: error.message });
@@ -41,15 +41,15 @@ export const getMessage = async (req, res) => {
     const findChat = await Chat.findOne({
       participent: { $all: [senderId, userToChat] },
     }).populate("message");
-    if (findChat.message.length > 0) {
-      res.status(200).json({ message:findChat.message });
+
+    if (findChat?.message?.length > 0) {
+      res.status(200).json({ message: findChat?.message });
     } else {
-      res
-        .status(200)
-        .json({ message:"Message not found",  chats:findChat.message });
+      res.status(200).json({ message: [] });
     }
   } catch (error) {
     console.log("error", error.message);
     res.status(500).json({ message: error.message });
   }
 };
+

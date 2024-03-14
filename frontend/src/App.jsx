@@ -1,26 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Login from './pages/Login'
-import Signup from './pages/SignUp'
-import HomePage from './pages/HomePage'
+import { useState } from "react";
+
+import "./App.css";
+import Login from "./pages/Login";
+import Signup from "./pages/SignUp.jsx";
+import HomePage from "./pages/HomePage";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useAuthContext } from "./context/AuthContext";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { authUser } = useAuthContext();
+
+
 
   return (
     <>
-<div className="p-4 flex items-center justify-center h-screen overflow-hidden">
+      <div className="p-4 flex items-center justify-center h-screen overflow-hidden">
+        <Routes>
+          <Route
+            path="/"
+            element={authUser ? <HomePage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/signup"
+            element={authUser ? <Navigate to="/" /> : <Signup />}
+          />
 
-
-  {/* <Login /> */}
-{/* <Signup /> */}
-<HomePage />
-  </div>
-
+          <Route
+            path="/login"
+            element={authUser ? <Navigate to="/" /> : <Login />}
+          />
+        </Routes>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

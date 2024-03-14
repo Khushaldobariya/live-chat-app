@@ -4,9 +4,9 @@ import bcrypt from "bcryptjs";
 
 export const userSignUp = async (req, res) => {
   try {
-    const { fullName, userName, password, confromPassword, gender, image } =
+    const { fullName, userName, password, confirmPassword, gender, image } =
       req.body;
-    if (password !== confromPassword) {
+    if (password !== confirmPassword) {
       res.status(400).json({ message: "Password dose not matched!" });
     }
     const user = await User.findOne({ userName });
@@ -44,6 +44,9 @@ export const userSignUp = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { userName, password } = req.body;
+    if (!req.body.userName || !req.body.password) {
+      res.status(400).json({ message: "Inavlid User Detalis " });
+    }
     const user = await User.findOne({ userName });
     
     const isComaprePassword = await bcrypt.compare(

@@ -1,21 +1,33 @@
 import React from "react";
+import { useAuthContext } from "../context/AuthContext";
+import UseCoversation from "../store/UseConversation";
+import { extractTime } from "../Utils/extractTime";
 
-const MessageText = () => {
+const MessageText = ({ message }) => {
+  const { authUser } = useAuthContext();
+  const { selectdConvercation, setSelectdConvercation } = UseCoversation();
+
+const timers = extractTime(message?.createdAt)
+  const fromMe =  message?.senderId == authUser?.user?._id;
+
+ 
+
+  const messageSide = fromMe ? "chat chat-end" : "chat chat-start";
+  const messageAvatr = fromMe ? authUser?.user?.image : selectdConvercation?.image;
+  const messageBgColor = fromMe ? "bg-blue-700" : "bg-gray-800";
+
   return (
-    <div className="chat chat-end">
+    <div className={messageSide}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
-          <img
-            alt=""
-            src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-          />
+          <img alt="" src={messageAvatr} />
         </div>
       </div>
-      <div className="chat-bubble text-white bg-blue-500">
-        You were the Chosen One!
+      <div className={`chat-bubble text-white ${messageBgColor}`}>
+        {message?.message}
       </div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">
-        Delivered
+        {timers}
       </div>
     </div>
   );
