@@ -103,7 +103,7 @@ const Signup = () => {
               onChange={handleRadioButton}
             />
             <Link
-              to="login"
+              to="/login"
               className="hover:underline hover:text-green-300 my-2 inline-block text-white"
               href="#"
             >

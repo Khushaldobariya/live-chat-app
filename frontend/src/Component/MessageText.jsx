@@ -8,12 +8,12 @@ const MessageText = ({ message }) => {
   const { selectdConvercation, setSelectdConvercation } = UseCoversation();
 
 const timers = extractTime(message?.createdAt)
-  const fromMe =  message?.senderId == authUser?.user?._id;
+  const fromMe =  message?.senderId == authUser?._id;
 
  
 
   const messageSide = fromMe ? "chat chat-end" : "chat chat-start";
-  const messageAvatr = fromMe ? authUser?.user?.image : selectdConvercation?.image;
+  const messageAvatr = fromMe ? authUser.image : selectdConvercation?.image;
   const messageBgColor = fromMe ? "bg-blue-700" : "bg-gray-800";
 
   return (

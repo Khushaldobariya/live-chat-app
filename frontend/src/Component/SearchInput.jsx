@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import UseGetCovercation from "./hooks/UseGetCovercation";
 import UseCoversation from "../store/UseConversation";
+import toast from "react-hot-toast";
 
 const SearchInput = () => {
 
@@ -15,8 +16,8 @@ const handleSearch = (e) => {
     toast.error("Please enter a user name")
   }
   const findUser = convercation.find((user) => user.fullName.toLowerCase().includes(search.toLowerCase()))
-  console.log('findUser', findUser)
-  if(convercation){
+  
+  if(findUser){
     setSelectdConvercation(findUser)
     setSearch("")
   } else {

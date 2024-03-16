@@ -10,16 +10,24 @@ const UseSendMessage = () => {
   const sendMessage = async (message) => {
     setLoading(true);
     try {
-      const res = await fetch(`api/message/sendMessage/${selectdConvercation?._id}`, {
-        method: "POST",
-        headers: { "content-Type": "application/json" },
-        body: JSON.stringify({message}),
-      });
+      const res = await fetch(
+        `api/message/sendMessage/${selectdConvercation?._id}`,
+        {
+          method: "POST",
+          headers: { "content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        }
+      );
       const data = await res.json();
       if (data.error) {
         throw new Error(data.error);
       }
-      setMessages([...messages, data]);
+      
+      if (res.status == 200) {
+        setMessages([...messages, data]);
+      } else {
+        toast.error(data.error);
+      }
     } catch (error) {
       toast.error(error.message);
     } finally {

@@ -23,8 +23,12 @@ const UseLogin = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-      localStorage.setItem("user", JSON.stringify(data));
-      setAuthUser(data);
+      if (res.status == 200) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        setAuthUser(data.user);
+      } else {
+        toast.error(data.error);
+      }
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -36,10 +40,7 @@ const UseLogin = () => {
 
 export default UseLogin;
 
-const handelInputErrors = ({
-  userName,
-  password,
-}) => {
+const handelInputErrors = ({ userName, password }) => {
   if (!userName || !password) {
     toast.error("please fill all fields");
 

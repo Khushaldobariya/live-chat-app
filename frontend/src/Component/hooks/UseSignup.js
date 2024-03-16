@@ -36,14 +36,19 @@ const useSignup = () => {
           confirmPassword,
         }),
       });
-      console.log("response", res);
+  
       const data = await res.json();
 
       if (data?.error) {
         throw new Error(data.error);
       }
-      localStorage.setItem("user", JSON.stringify(data));
-      setAuthUser(data);
+      if(res.status == 200) {
+
+        localStorage.setItem("user", JSON.stringify(data.user));
+        setAuthUser(data.user);
+      } else {
+        toast.error(data.error);
+      }
     } catch (error) {
       console.log("error", error);
       toast.error(error.message);

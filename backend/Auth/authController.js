@@ -45,8 +45,8 @@ export const loginUser = async (req, res) => {
   try {
     const { userName, password } = req.body;
     if (!req.body.userName || !req.body.password) {
-      res.status(400).json({ message: "Inavlid User Detalis " });
-    }
+      res.status(400).json({ message: "Inavlid User Detalis" });
+    } 
     const user = await User.findOne({ userName });
     
     const isComaprePassword = await bcrypt.compare(
@@ -61,12 +61,9 @@ export const loginUser = async (req, res) => {
           );
         }
     genrateWebTokenCookies(user._id ,res)
-
-
     res.status(200).json({message :`${user.userName} user Login Successfully` ,user})
   } catch (error) {
     console.log("error", error.message);
-
     res.status(500).json({ message: error.message });
   }
 };
