@@ -7,7 +7,7 @@ const Chat = () => {
   const { loading, convercation } = UseGetCovercation();
 
   return (
-    <div className="py-2 overflow-auto">
+    <div className="py-2 overflow-auto rounded-lg bg-white">
       {loading ? (
         <span class="loading loading-spinner text-accent"></span>
       ) : (

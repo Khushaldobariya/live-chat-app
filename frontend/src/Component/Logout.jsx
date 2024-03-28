@@ -11,7 +11,7 @@ const Logout = () => {
       {loading ? (
         <span className="loading loading-spinner text-accent"></span>
       ) : (
-        <BiLogOut className="w-6 h-6 text-white cursor-pointer" onClick={logout}/>
+        <BiLogOut className="w-6 h-6 text-black cursor-pointer" onClick={logout}/>
       )}
     </div>
   );

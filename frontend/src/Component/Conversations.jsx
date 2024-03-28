@@ -14,9 +14,7 @@ const Conversations = ({ convercation, emoji, lastIndex }) => {
   return (
     <>
       <div
-        className={`flex items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer gap-2 ${
-          isSelected ? "bg-rose-700" : ""
-        }`}
+        className="flex items-center hover:bg-gray-200 rounded p-2 py-1 cursor-pointer gap-2 " style={{background:isSelected? "#978cdd":"" }}
         onClick={() => setSelectdConvercation(convercation)}
       >
         <div className={`avatar ${isOnline ? "online" : ""}`}>
@@ -26,12 +24,12 @@ const Conversations = ({ convercation, emoji, lastIndex }) => {
         </div>
         <div className="flex flex-col flex-1">
           <div className="flex gap-3 justify-between">
-            <p className="font-bold text-gray-200">{convercation.fullName}</p>
+            <p className={`font-bold ${!isSelected ?"text-gray-800 ": "text-white"} `}>{convercation.fullName}</p>
             <span className="text-xl">{emoji}</span>
           </div>
         </div>
       </div>
-      {!lastIndex && <div className="divider my-0 h-1  divider-success" />}
+      {!lastIndex && <div className="divider my-0 h-1  divide-slate-800" />}
     </>
   );
 };

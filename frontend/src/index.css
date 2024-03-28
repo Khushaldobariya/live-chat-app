@@ -2,12 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+#root {
+    padding: 0px !important;
+    max-width: 100vw !important;
+}
+
+:root {
+    background-color: #f5f7fb !important;
+
+}
+
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("./assets/image/background.jpeg");
+    background: #f5f7fb;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     overflow: hidden;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 
 }
 
@@ -68,4 +83,10 @@ html {
     60% {
         transform: translate3d(4px, 0, 0);
     }
+}
+
+.logo {
+    width: 115px;
+    height: 115px;
+    margin: 0 auto;
 }

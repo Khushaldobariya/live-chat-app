@@ -6,7 +6,7 @@ import Logout from './Logout'
 
 const Sidebar = () => {
   return (
-    <div className="border border-slate-500 flex flex-col p-4">
+    <div className="flex flex-col p-4">
         <SearchInput />
         <div className='divider px-3'></div>
   

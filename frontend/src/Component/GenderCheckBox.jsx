@@ -7,12 +7,12 @@ const GenderCheckBox = ({  gender, onChange  }) => {
     <div className="flex justify-around">
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text text-white">Female</span>
+          <span class="label-text text-gray-800">Female</span>
 
           <input
             type="radio"
             name="radio-2"
-            class="radio checked:bg-green-500 border-slate-900 mx-2 "
+            class="radio checked:bg-amber-300 border-slate-900 mx-2 "
             value="female"
             checked={gender === "female" ? true : false}
             onChange={(e) => {
@@ -23,11 +23,11 @@ const GenderCheckBox = ({  gender, onChange  }) => {
       </div>
       <div class="form-control">
         <label class="label cursor-pointer">
-          <span class="label-text text-white">Male</span>
+          <span class="label-text text-gray-800">Male</span>
           <input
             type="radio"
             name="radio-2"
-            class="radio checked:bg-green-500 border-slate-900 mx-2 "
+            class="radio checked:bg-amber-300 border-slate-900 mx-2 "
             value="male"
             checked={gender === "male" ? true : false}
             onChange={(e) => {

@@ -9,12 +9,9 @@ const MessageText = ({ message }) => {
 
 const timers = extractTime(message?.createdAt)
   const fromMe =  message?.senderId == authUser?._id;
-
- 
-
   const messageSide = fromMe ? "chat chat-end" : "chat chat-start";
   const messageAvatr = fromMe ? authUser.image : selectdConvercation?.image;
-  const messageBgColor = fromMe ? "bg-blue-700" : "bg-gray-800";
+  const messageBgColor = fromMe ? "bg-amber-500" : "bg-gray-800";
 
   return (
     <div className={messageSide}>

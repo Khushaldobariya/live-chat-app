@@ -24,7 +24,7 @@ const MessageInput = () => {
     <form className="px-4 my-3" onSubmit={handleSendMessages}>
       <div className="w-full relative">
         <input
-          className="border text-sm rounded-lg w-full p-3 block bg-gray-700 border-gray-700 text-white"
+          className="input input-bordered w-full max-w-full border rounded-full bg-white"
           type="text"
           placeholder="enter a message"
           value={message}
@@ -34,13 +34,13 @@ const MessageInput = () => {
         />
         <button
           type="submit"
-          className="btn absolute items-center p-3 inset-y-0 end-0 flex btn-neutral"
+          className="absolute items-center p-3 inset-y-0 end-0 flex "
           disabled={!message || loading }
         >
           {loading ? (
             <span class="loading loading-spinner text-accent"></span>
           ) : (
-            <BsSend />
+            <BsSend className="text-black" />
           )}
         </button>
       </div>
